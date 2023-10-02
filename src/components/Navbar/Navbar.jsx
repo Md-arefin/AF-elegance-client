@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import searchImg from '../../assets/images/icons/search.png';
-import shoppingCart from '../../assets/images/icons/shopping-cart.png';
 import fast from '../../assets/images/icons/fast-delivery.png';
 import wishList from '../../assets/images/icons/wish-list.png';
 import { Link } from 'react-router-dom';
+import Modal from '../Modal/Modal';
 
 const Navbar = () => {
+
+    let [isOpen, setIsOpen] = useState(true);
+
+
     const navItems = <>
         <li>
             <Link to="/mens" className='lg:text-xl'>Men's</Link>
@@ -52,7 +56,14 @@ const Navbar = () => {
                     <div className='lg:w-1/2 hidden lg:block'>
                         {iconItems}
                     </div>
-                    <a className="btn">Button</a>
+                    <button
+                        type="button"
+                        onClick={()=>setIsOpen(!isOpen)}
+                        className="btn rounded-md"
+                    >
+                        Login 
+                    </button>
+                    <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
                 </div>
             </div>
         </div>
