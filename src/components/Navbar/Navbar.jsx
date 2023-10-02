@@ -7,7 +7,7 @@ import Modal from '../Modal/Modal';
 
 const Navbar = () => {
 
-    let [isOpen, setIsOpen] = useState(true);
+    let [isOpen, setIsOpen] = useState(false);
 
 
     const navItems = <>
