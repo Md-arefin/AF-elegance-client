@@ -5,7 +5,7 @@ const Footer = () => {
         <div>
             <footer className="footer p-10 bg-black text-white">
                 <aside>
-                    <h1>A&F Elegance</h1>
+                    <h1 className='lg:text-3xl lg:pb-10'>A&F Elegance</h1>
                     <p>A&F Elegance Ltd.<br />Providing reliable tech since 1992</p>
                 </aside>
                 <nav>

@@ -1,8 +1,35 @@
 import React from 'react';
+import searchImg from '../../assets/images/icons/search.png';
+import shoppingCart from '../../assets/images/icons/shopping-cart.png';
+import fast from '../../assets/images/icons/fast-delivery.png';
+import wishList from '../../assets/images/icons/wish-list.png';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
+    const navItems = <>
+        <li>
+            <Link to="/mens" className='lg:text-xl'>Men's</Link>
+        </li>
+        <li>
+            <Link to="/womens" className='lg:text-xl'> Women's</Link>
+        </li>
+        <li>
+            <Link to="/kids" className='lg:text-xl'>Kids</Link>
+        </li>
+        <li>
+            <Link to="/jeans" className='lg:text-xl'>Jeans</Link>
+        </li>
+    </>
+
+    const iconItems = <>
+        <div className='flex flex-col lg:flex-row justify-evenly lg:items-center my-5 ml-5'>
+            <img src={searchImg} className="w-8 cursor-pointer" alt="" />
+            <img src={wishList} className="w-8 cursor-pointer my-5" alt="" />
+            <img src={fast} className="w-8 cursor-pointer" alt="" />
+        </div>
+    </>
     return (
-        <div>
+        <div className='md:px-5 lg:px-10'>
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -10,35 +37,21 @@ const Navbar = () => {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            <li><a>Item 1</a></li>
-                            <li>
-                                <a>Parent</a>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a>Item 3</a></li>
+                            {navItems}
+                            {iconItems}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
-                        <li tabIndex={0}>
-                            <details>
-                                <summary>Parent</summary>
-                                <ul className="p-2">
-                                    <li><a>Submenu 1</a></li>
-                                    <li><a>Submenu 2</a></li>
-                                </ul>
-                            </details>
-                        </li>
-                        <li><a>Item 3</a></li>
-                    </ul>
+                    <Link to='/' className="btn btn-ghost normal-case md:text-3xl">A&F Elegance</Link>
+                    <div className=" hidden lg:flex">
+                        <ul className="menu menu-horizontal px-1">
+                            {navItems}
+                        </ul>
+                    </div>
                 </div>
                 <div className="navbar-end">
+                    <div className='lg:w-1/2 hidden lg:block'>
+                        {iconItems}
+                    </div>
                     <a className="btn">Button</a>
                 </div>
             </div>
