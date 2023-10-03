@@ -11,7 +11,6 @@ const Navbar = () => {
     let [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useContext(AuthContext);
 
-console.log(user);
     const navItems = <>
         <li>
             <Link to="/mens" className='lg:text-xl'>Men's</Link>
@@ -21,9 +20,6 @@ console.log(user);
         </li>
         <li>
             <Link to="/kids" className='lg:text-xl'>Kids</Link>
-        </li>
-        <li>
-            <Link to="/jeans" className='lg:text-xl'>Jeans</Link>
         </li>
     </>
 

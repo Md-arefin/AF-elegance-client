@@ -74,7 +74,7 @@ const SignUp = () => {
                                             }
                                         })
                                 })
-                            navigate('/')
+                            // navigate('/')
                         })
                         .catch(error => {
                             console.log(error.message);
@@ -194,7 +194,6 @@ const SignUp = () => {
                 </div>
 
             </form>
-
         </div>
     );
 };
