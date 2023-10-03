@@ -1,8 +1,9 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from '../components/Error/ErrorPage';
 import Dashboard from '../Layout/Dashboard';
 import Main from '../Layout/Main';
+import DashboardReview from '../Pages/Dashboard/DashboardReview/DashboardReview';
 import Purchase from '../Pages/Dashboard/Purchase/Purchase';
 import Home from '../Pages/Home/Home/Home';
 import Kids from '../Pages/Kids/Kids';
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Purchase />,
+      },
+      {
+        path: "/dashboard/review",
+        element: <DashboardReview />,
       },
     ]
   }
