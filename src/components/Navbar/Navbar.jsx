@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import searchImg from '../../assets/images/icons/search.png';
 import fast from '../../assets/images/icons/fast-delivery.png';
 import wishList from '../../assets/images/icons/wish-list.png';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal/Modal';
+import { AuthContext } from '../../provider/AuthProvider';
 
 const Navbar = () => {
 
     let [isOpen, setIsOpen] = useState(false);
+    const { user, logout } = useContext(AuthContext);
 
-
+console.log(user);
     const navItems = <>
         <li>
             <Link to="/mens" className='lg:text-xl'>Men's</Link>
@@ -24,6 +26,10 @@ const Navbar = () => {
             <Link to="/jeans" className='lg:text-xl'>Jeans</Link>
         </li>
     </>
+
+    const handleLogout = () => {
+        logout();
+    }
 
     const iconItems = <>
         <div className='flex flex-col lg:flex-row justify-evenly lg:items-center my-5 ml-5'>
@@ -56,14 +62,28 @@ const Navbar = () => {
                     <div className='lg:w-1/2 hidden lg:block'>
                         {iconItems}
                     </div>
-                    <button
-                        type="button"
-                        onClick={()=>setIsOpen(!isOpen)}
-                        className="btn rounded-md"
-                    >
-                        Login 
-                    </button>
-                    <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
+                    {
+                        user ? <div className='flex items-center justify-evenly gap-5'>
+                            <div className="avatar">
+                                <div className="w-10 rounded-full">
+                                    <img src={user.photoURL} />
+                                </div>
+                            </div>
+                            <button
+                                onClick={handleLogout}
+                                className="btn rounded-md"
+                            >
+                                Logout
+                            </button>
+                        </div> : <button
+                            type="button"
+                            onClick={() => setIsOpen(!isOpen)}
+                            className="btn rounded-md"
+                        >
+                            Login
+                        </button>
+                    }
+                    <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
                 </div>
             </div>
         </div>

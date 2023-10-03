@@ -24,7 +24,7 @@ const SecondSection = () => {
 
             <div className='flex flex-col lg:flex-row w-full lg:w-10/12 mx-auto'>
                 <div className="bg-[url('/image/m-11.jpg')] bg-cover bg-no-repeat border-[10px] border-black w-full lg:w-1/2 h-96 lg:h-[750px]">
-                    <div className='bg-black bg-opacity-30 text-white h-96 lg:h-[740px] pl-5 pt-48 lg:pt-96'>
+                    <div className='bg-black bg-opacity-30 text-white h-96 lg:h-[740px] pl-5 pt-48 lg:pt-[460px]'>
                         <p className='text-2xl lg:text-6xl mb-5'>
                             WARM UP
                             <br />
