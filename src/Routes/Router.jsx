@@ -3,6 +3,10 @@ import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import ErrorPage from '../components/Error/ErrorPage';
 import Main from '../Layout/Main';
 import Home from '../Pages/Home/Home/Home';
+import Jeans from '../Pages/Jeans/Jeans';
+import Kids from '../Pages/Kids/Kids';
+import Mens from '../Pages/Mens/Mens';
+import Womens from '../Pages/Womens/Womens';
 
 const router = createBrowserRouter([
     {
@@ -16,19 +20,19 @@ const router = createBrowserRouter([
         },
         {
           path: "/mens",
-          element: <Home />,
+          element: <Mens />,
         },
         {
           path: "/womens",
-          element: <Home />,
+          element: <Womens />,
         },
         {
           path: "/kids",
-          element: <Home />,
+          element: <Kids />,
         },
         {
           path: "/jeans",
-          element: <Home />,
+          element: <Jeans />,
         },
       ],
     },
