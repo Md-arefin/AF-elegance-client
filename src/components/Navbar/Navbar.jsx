@@ -21,6 +21,9 @@ const Navbar = () => {
         <li>
             <Link to="/kids" className='lg:text-xl'>Kids</Link>
         </li>
+        <li>
+            <Link to="/dashboard" className='lg:text-xl'>Dashboard</Link>
+        </li>
     </>
 
     const handleLogout = () => {
