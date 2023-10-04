@@ -11,13 +11,13 @@ const Dashboard = () => {
     return (
         <div className='flex justify-between h-screen w-full'>
             <div className='bg-gray-400 hidden lg:block lg:w-96 h-full px-5'>
-                <div className='lg:pl-20 lg:mt-20 lg:mb-10'>
+                <div className='lg:mt-20 lg:mb-10'>
                     <div className="avatar">
-                        <div className="w-24 lg:ml-3 rounded-full">
+                        <div className="w-24 lg:ml-20 rounded-full">
                             <img src={user?.photoURL} />
                         </div>
                     </div>
-                    <p className='py-2 text-xl px-2'>
+                    <p className='py-2 text-center text-xl px-2'>
                         {user?.displayName}
                     </p>
                 </div>

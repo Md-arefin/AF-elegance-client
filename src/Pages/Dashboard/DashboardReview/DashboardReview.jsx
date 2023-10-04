@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import img1 from "../../../assets/images/2456038516.jpg"
 import { AuthContext } from '../../../provider/AuthProvider';
 
@@ -9,14 +10,41 @@ const DashboardReview = () => {
     const { register, handleSubmit, reset, setValue } = useForm({
         defaultValues: {
             username: user?.displayName,
-            email: user?.email ,
+            email: user?.email,
             ratings: 5,
             message: '',
         },
     });
 
     const onSubmit = (data) => {
-        console.log(data);
+        const reviewData = {
+            username:data.username,
+            photo: user?.photoURL,
+            email: data?.email,
+            ratings: data?.ratings,
+            message: data?.message,
+        };
+        console.log(reviewData);
+        fetch("http://localhost:5000/add-review", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(reviewData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Thankyou for your feedback',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                };
+            })
+
     }
     return (
         <div className='mt-10'>
@@ -37,7 +65,7 @@ const DashboardReview = () => {
                                 className="w-full rounded-md"
                                 type="text"
                                 placeholder='Enter your username'
-                                {...register("username")}  />
+                                {...register("username")} />
                         </div>
 
                         <div className="flex flex-col gap-3 mb-2">

@@ -61,7 +61,7 @@ const SignUp = () => {
                                         },
                                         body: JSON.stringify(saveUser)
                                     })
-                                        .then(res => res.json(saveUser))
+                                        .then(res => res.json())
                                         .then(data => {
                                             if (data.insertedId) {
                                                 Swal.fire({
@@ -102,7 +102,7 @@ const SignUp = () => {
                     },
                     body: JSON.stringify(saveUser)
                 })
-                    .then(res => res.json(saveUser))
+                    .then(res => res.json())
                     .then(() => {
                         Swal.fire({
                             position: 'center',

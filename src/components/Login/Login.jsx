@@ -30,7 +30,7 @@ const Login = () => {
                     },
                     body: JSON.stringify(saveUser)
                 })
-                    .then(res => res.json(saveUser))
+                    .then(res => res.json())
                     .then(() => {
                         Swal.fire({
                             position: 'center',
