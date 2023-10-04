@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Details = ({ product }) => {
 
+    const { _id, image, dressTitle, style, length, price, } = product;
+
     let type = '';
 
     if (product.type === "Men") {
@@ -13,9 +15,6 @@ const Details = ({ product }) => {
         type = 'kids';
     }
 
-
-    console.log(type);
-    const { _id, image, dressTitle, style, length, price, } = product;
     return (
         <div key={_id} className="card w-3/3 bg-base-100 shadow-xl">
             <figure><img src={image} alt={dressTitle} /></figure>

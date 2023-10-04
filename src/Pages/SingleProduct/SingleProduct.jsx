@@ -9,7 +9,7 @@ const SingleProduct = () => {
 
     const { category, dressTitle, image, length, price, reviews, size, stock, style, type, _id } = product[0];
 
-    console.log(product[0]);
+    // console.log(product[0]);
     return (
         <div className='mt-5 mb-10'>
             <div className='flex flex-col md:flex-row items-center justify-center gap-10 mb-10'>

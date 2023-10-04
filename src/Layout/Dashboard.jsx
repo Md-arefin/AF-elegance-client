@@ -1,13 +1,107 @@
 import React, { useContext } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import reviewImg from "../assets/images/icons/review.png"
-import profileImg from "../assets/images/icons/profile.png"
-import HistoryImg from "../assets/images/icons/report.png"
-import homeImg from "../assets/images/icons/home.png"
 import { AuthContext } from '../provider/AuthProvider';
+import { NavLink, Outlet } from 'react-router-dom';
+import reviewImg from "../assets/images/icons/review.png";
+import profileImg from "../assets/images/icons/profile.png";
+import HistoryImg from "../assets/images/icons/report.png";
+import homeImg from "../assets/images/icons/home.png";
+import boxImg from "../assets/images/icons/box.png";
+import productsImg from "../assets/images/icons/products.png";
+import teamImg from "../assets/images/icons/team.png";
+import moneyImg from "../assets/images/icons/money.png";
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
+
+    // TODO: load data from the server to have dynamic isAdmin based on Data
+
+    const isAdmin = true;
+
+    const userNavItems = <>
+        <li>
+            <NavLink to="/" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    Home
+                </p>
+                <img className='w-8' src={homeImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/history" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    History
+                </p>
+                <img className='w-8' src={HistoryImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/review" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    Review
+                </p>
+                <img className='w-8' src={reviewImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/profile" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    Profile
+                </p>
+                <img className='w-8' src={profileImg} alt="" />
+            </NavLink>
+        </li>
+    </>
+
+    const adminNavItems = <>
+        <li>
+            <NavLink to="/" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    Home
+                </p>
+                <img className='w-8' src={homeImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/all-users" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    All users
+                </p>
+                <img className='w-8' src={teamImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/all-products" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    All products
+                </p>
+                <img className='w-8' src={productsImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/add-product" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    Add product
+                </p>
+                <img className='w-8' src={boxImg} alt="" />
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to="/dashboard/revenue" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    Revenue
+                </p>
+                <img className='w-8' src={moneyImg} alt="" />
+            </NavLink>
+        </li>
+    </>
+
+
     return (
         <div className='flex justify-between h-screen w-full'>
             <div className='bg-gray-400 hidden lg:block lg:w-96 h-full px-5'>
@@ -23,38 +117,9 @@ const Dashboard = () => {
                 </div>
                 <div>
                     <ul>
-                        <li>
-                            <NavLink to="/" className='lg:text-xl btn flex justify-between items-center my-2'>
-                                <p>
-                                    Home
-                                </p>
-                                <img className='w-8' src={homeImg} alt="" /></NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink to="/" className='lg:text-xl btn flex justify-between items-center my-2'>
-                                <p>
-                                    History
-                                </p>
-                                <img className='w-8' src={HistoryImg} alt="" /></NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink to="/dashboard/review" className='lg:text-xl btn flex justify-between items-center my-2'>
-                                <p>
-                                    Review
-                                </p>
-                                <img className='w-8' src={reviewImg} alt="" />
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink to="/profile" className='lg:text-xl btn flex justify-between items-center my-2'>
-                                <p>
-                                    Profile
-                                </p>
-                                <img className='w-8' src={profileImg} alt="" /></NavLink>
-                        </li>
+                        {
+                            isAdmin ? adminNavItems : userNavItems
+                        }
                     </ul>
                 </div>
             </div>
@@ -78,39 +143,9 @@ const Dashboard = () => {
                                 </p>
                             </div>
                         </li>
-                        <li>
-                            <NavLink to="/" className='text-lg btn flex justify-between items-center my-2 pt-2'>
-                                <p>
-                                    Home
-                                </p>
-                                <img className='w-8' src={homeImg} alt="" /></NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink to="/" className='text-lg btn flex justify-between items-center my-2  pt-2'>
-                                <p>
-                                    History
-                                </p>
-                                <img className='w-8' src={HistoryImg} alt="" /></NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink to="/dashboard/review" className='text-lg btn flex justify-between items-center my-2  pt-2'>
-                                <p>
-                                    Review
-                                </p>
-                                <img className='w-8' src={reviewImg} alt="" />
-                            </NavLink>
-                        </li>
-
-                        <li>
-                            <NavLink to="/profile" className='text-lg btn flex justify-between items-center my-2  pt-2'>
-                                <p>
-                                    Profile
-                                </p>
-                                <img className='w-8' src={profileImg} alt="" /></NavLink>
-                        </li>
-
+                        {
+                            isAdmin ? adminNavItems : userNavItems
+                        }
                     </ul>
                 </div>
                 <Outlet />
