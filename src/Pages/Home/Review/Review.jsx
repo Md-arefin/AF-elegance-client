@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { BiSolidQuoteSingleRight } from 'react-icons/bi';
+import { BiSolidQuoteSingleRight, BiSolidQuoteSingleLeft } from 'react-icons/bi';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import "swiper/css/navigation";
@@ -19,6 +19,7 @@ const Review = () => {
     }, [])
     return (
         <div className='my-20'>
+            <h4 className='text-center text-3xl md:text-5xl my-10'>Testimonial</h4>
             <Swiper autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
@@ -29,16 +30,15 @@ const Review = () => {
                     reviews?.map((review) =>
                         <SwiperSlide key={review._id} className="w-full">
                             <div className='flex flex-col items-center'>
-                                <div className='flex flex-col items-center justify-center'>
-                                    <div className='flex justify-center items-center'>
-                                        <BiSolidQuoteSingleRight className='text-center text-5xl text-slate-500'></BiSolidQuoteSingleRight>
-                                        <BiSolidQuoteSingleRight className='text-center text-5xl text-slate-500'></BiSolidQuoteSingleRight>
-                                    </div>
-                                    <div className='text-center my-5'>
-                                        <p className='font-bold text-xl md:text-2xl px-3'>
+                                <div className='flex flex-col items-center justify-center mb-5'>
+                                    <div className='flex justify-evenly '>
+                                        <BiSolidQuoteSingleLeft className='text-center text-2xl text-slate-500'/>
+                                        <p className='font-bold text-2xl md:text-2xl '>
                                             {review?.message}
                                         </p>
+                                        <BiSolidQuoteSingleRight className='text-center text-xl text-slate-500' />
                                     </div>
+                                   
                                 </div>
                                 <div className='flex items-center justify-center gap-3 pl-20 w-96'>
                                     <div className="avatar">
