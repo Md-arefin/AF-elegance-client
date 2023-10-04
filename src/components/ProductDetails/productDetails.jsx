@@ -3,7 +3,19 @@ import { Link } from 'react-router-dom';
 
 const Details = ({ product }) => {
 
-    const {_id , image, dressTitle, style, length, price} = product;
+    let type = '';
+
+    if (product.type === "Men") {
+        type = 'mens';
+    } else if (product.type === "Women") {
+        type = 'womens';
+    } else {
+        type = 'kids';
+    }
+
+
+    console.log(type);
+    const { _id, image, dressTitle, style, length, price, } = product;
     return (
         <div key={_id} className="card w-3/3 bg-base-100 shadow-xl">
             <figure><img src={image} alt={dressTitle} /></figure>
@@ -13,7 +25,7 @@ const Details = ({ product }) => {
                 <p className=''>Length: {length}</p>
                 <p className=''>Style: {style}</p>
                 <div className="card-actions justify-end">
-                    <Link to="" className='btn'>
+                    <Link to={`/${type}/${_id}`} className='btn'>
                         View details
                     </Link>
                 </div>

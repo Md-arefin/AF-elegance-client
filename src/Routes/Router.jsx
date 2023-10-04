@@ -8,6 +8,7 @@ import Purchase from '../Pages/Dashboard/Purchase/Purchase';
 import Home from '../Pages/Home/Home/Home';
 import Kids from '../Pages/Kids/Kids';
 import Mens from '../Pages/Mens/Mens';
+import SingleProduct from '../Pages/SingleProduct/SingleProduct';
 import Womens from '../Pages/Womens/Womens';
 
 const router = createBrowserRouter([
@@ -25,12 +26,27 @@ const router = createBrowserRouter([
         element: <Mens />,
       },
       {
+        path: "/mens/:id",
+        element: <SingleProduct />,
+        loader: ({ params }) => fetch(`http://localhost:5000/mens/${params.id}`),
+      },
+      {
         path: "/womens",
         element: <Womens />,
       },
       {
+        path: "/womens/:id",
+        element: <SingleProduct />,
+        loader: ({ params }) => fetch(`http://localhost:5000/mens/${params.id}`),
+      },
+      {
         path: "/kids",
         element: <Kids />,
+      },
+      {
+        path: "/kids/:id",
+        element: <SingleProduct />,
+        loader: ({ params }) => fetch(`http://localhost:5000/mens/${params.id}`),
       },
     ],
   },
