@@ -18,7 +18,7 @@ const AllUsers = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if(data.modifiedCount){
+                if (data.modifiedCount) {
                     refetch();
                     Swal.fire({
                         position: 'center',
@@ -28,13 +28,30 @@ const AllUsers = () => {
                         timer: 1500
                     })
                 }
+            })
+    }
+
+    const handleDeleteUser = (user) => {
+        fetch(`http://localhost:5000/users/${user._id}`, {
+            method: "DELETE"
         })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.deletedCount) {
+                    refetch();
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: "User delete successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            })
     }
 
-    const handleDeleteUser = (id) => {
 
-        console.log(id);
-    }
     return (
         <div className='my-20'>
             <p className=' text-3xl my-10 mx-10'>Total users: {users.length}</p>
@@ -85,7 +102,7 @@ const AllUsers = () => {
                                         <div onClick={() => handleAdmin(user)} className="btn bg-slate-300">Make Admin</div>
                                     </td>
                                     <td>
-                                        <div onClick={() => handleDeleteUser(user._id)} className='btn bg-red-600 text-white'>
+                                        <div onClick={() => handleDeleteUser(user)} className='btn bg-red-600 text-white'>
                                             <FaTrashAlt />
                                         </div>
                                     </td>
