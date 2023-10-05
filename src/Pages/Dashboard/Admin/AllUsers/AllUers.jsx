@@ -99,7 +99,7 @@ const AllUsers = () => {
                                         }
                                     </td>
                                     <td>
-                                        <div onClick={() => handleAdmin(user)} className="btn bg-slate-300">Make Admin</div>
+                                        <div onClick={() => handleAdmin(user)} disabled={user.role === "admin"} className="btn bg-slate-300">Make Admin</div>
                                     </td>
                                     <td>
                                         <div onClick={() => handleDeleteUser(user)} className='btn bg-red-600 text-white'>

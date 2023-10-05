@@ -9,13 +9,18 @@ import boxImg from "../assets/images/icons/box.png";
 import productsImg from "../assets/images/icons/products.png";
 import teamImg from "../assets/images/icons/team.png";
 import moneyImg from "../assets/images/icons/money.png";
+import cartImg from "../assets/images/icons/fast-delivery.png";
+import wishImg from "../assets/images/icons/wish-list.png";
+import useAdmin from '../components/Hooks/useAdmin';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
 
-    // TODO: load data from the server to have dynamic isAdmin based on Data
+    // const isAdmin = false;
 
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+
+    console.log(isAdmin?.admin);
 
     const userNavItems = <>
         <li>
@@ -28,9 +33,27 @@ const Dashboard = () => {
         </li>
 
         <li>
-            <NavLink to="/dashboard/history" className='lg:text-xl btn flex justify-between items-center my-2'>
+            <NavLink to="/dashboard/my-cart" className='lg:text-xl btn flex justify-between items-center my-2'>
                 <p>
-                    History
+                    My cart
+                </p>
+                <img className='w-8' src={cartImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/MyWhishList" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    My WhishList
+                </p>
+                <img className='w-8' src={wishImg} alt="" />
+            </NavLink>
+        </li>
+
+        <li>
+            <NavLink to="/dashboard/purchase" className='lg:text-xl btn flex justify-between items-center my-2'>
+                <p>
+                    Paid History
                 </p>
                 <img className='w-8' src={HistoryImg} alt="" />
             </NavLink>
@@ -53,6 +76,7 @@ const Dashboard = () => {
                 <img className='w-8' src={profileImg} alt="" />
             </NavLink>
         </li>
+
     </>
 
     const adminNavItems = <>
@@ -103,8 +127,8 @@ const Dashboard = () => {
 
 
     return (
-        <div className='flex justify-between h-screen w-full'>
-            <div className='bg-gray-400 hidden lg:block lg:w-96 h-full px-5'>
+        <div className='flex justify-between  w-full'>
+            <div className='bg-gray-400 hidden lg:block lg:w-96 h-screen px-5 sticky top-0'>
                 <div className='lg:mt-20 lg:mb-10'>
                     <div className="avatar">
                         <div className="w-24 lg:ml-20 rounded-full">
@@ -118,7 +142,7 @@ const Dashboard = () => {
                 <div>
                     <ul>
                         {
-                            isAdmin ? adminNavItems : userNavItems
+                            isAdmin?.admin && adminNavItems || userNavItems
                         }
                     </ul>
                 </div>
@@ -144,7 +168,7 @@ const Dashboard = () => {
                             </div>
                         </li>
                         {
-                            isAdmin ? adminNavItems : userNavItems
+                            isAdmin?.admin && adminNavItems ||  userNavItems
                         }
                     </ul>
                 </div>

@@ -29,12 +29,19 @@ const Navbar = () => {
     const handleLogout = () => {
         logout();
     }
-
+    
     const iconItems = <>
         <div className='flex flex-col lg:flex-row justify-evenly lg:items-center my-5 ml-5'>
+
             <img src={searchImg} className="w-8 cursor-pointer" alt="" />
+
+            <Link to="/dashboard/MyWhishList">
             <img src={wishList} className="w-8 cursor-pointer my-5" alt="" />
-            <img src={fast} className="w-8 cursor-pointer" alt="" />
+            </Link>
+
+            <Link to="/dashboard/my-cart">
+                <img src={fast} className="w-8 cursor-pointer" alt="" />
+            </Link>
         </div>
     </>
     return (

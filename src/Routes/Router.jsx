@@ -7,7 +7,10 @@ import AddProduct from '../Pages/Dashboard/Admin/AddProduct/AddProduct';
 import AllProduct from '../Pages/Dashboard/Admin/AllProducts/AllProduct';
 import AllUsers from '../Pages/Dashboard/Admin/AllUsers/AllUers';
 import Revenue from '../Pages/Dashboard/Admin/Revenue/Revenue';
+import Cart from '../Pages/Dashboard/Cart/Cart';
 import DashboardReview from '../Pages/Dashboard/DashboardReview/DashboardReview';
+import MyWhishList from '../Pages/Dashboard/MyWhishList/MyWhishList';
+import Profile from '../Pages/Dashboard/Profile/Profile';
 import Purchase from '../Pages/Dashboard/Purchase/Purchase';
 import Home from '../Pages/Home/Home/Home';
 import Kids from '../Pages/Kids/Kids';
@@ -65,6 +68,18 @@ const router = createBrowserRouter([
       {
         path: "review",
         element: <DashboardReview />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "my-cart",
+        element: <Cart />,
+      },
+      {
+        path: "MyWhishList",
+        element: <MyWhishList />,
       },
       // admins routes
       {
