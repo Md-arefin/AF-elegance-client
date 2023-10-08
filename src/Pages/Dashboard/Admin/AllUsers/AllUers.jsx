@@ -11,6 +11,8 @@ const AllUsers = () => {
         return res.json();
     })
 
+    console.log(users);
+
     const handleAdmin = (user) => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
             method: "PATCH"
@@ -60,13 +62,13 @@ const AllUsers = () => {
                 <table className="table table-zebra ">
                     {/* head */}
                     <thead>
-                        <tr className='text-lg md:text-xl bg-orange-300'>
+                        <tr className='text-lg md:text-xl bg-gray-300 text-black'>
                             <th>
                             </th>
                             <th>Name & Email</th>
                             <th>Role</th>
                             <th>Make Admin</th>
-                            <th>Action</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,7 +104,7 @@ const AllUsers = () => {
                                         <div onClick={() => handleAdmin(user)} disabled={user.role === "admin"} className="btn bg-slate-300">Make Admin</div>
                                     </td>
                                     <td>
-                                        <div onClick={() => handleDeleteUser(user)} className='btn bg-red-600 text-white'>
+                                        <div onClick={() => handleDeleteUser(user)} className='btn bg-red-600 text-white hover:text-black'>
                                             <FaTrashAlt />
                                         </div>
                                     </td>
