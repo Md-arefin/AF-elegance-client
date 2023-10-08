@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import img1 from "../../../../assets/images/20945766.jpg"
 import { AuthContext } from '../../../../provider/AuthProvider';
 
@@ -15,30 +15,70 @@ const AddProduct = () => {
         setPhotoName(image.name);
     };
 
-     const handleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         const form = event.target;
-        const username = form.username.value;
-        const email = form.email.value;
-        const password = form.password.value;
+        const productTitle = form.productTitle.value;
+        const category = form.category.value;
+        const length = form.length.value;
+        const size = form.size.value;
+        const style = form.style.value;
+        const price = form.price.value;
+        const stock = form.stock.value;
+        const type = form.gender.value;
+        const bestSales = form.bestSales.value;
+        const sales = form.sales.value;
         const photo = form.photo.files[0];
 
-        // console.log(username,email, password, photo);  
+        // console.log('photo', photo, 'productTitle', productTitle, category, 'category', length, 'length', size, 'size', style, 'style', price, 'price', stock, 'stock', type, 'type', "BestSales", bestSales, 'sales', sales);
 
         const formData = new FormData();
         formData.append("image", photo);
 
+        fetch(img_hosting_url, {
+            method: "POST",
+            body: formData
+        }).then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    const imgURL = imgResponse.data.display_url;
+                    const productData = {
+                        email: user?.email,
+                        image: imgURL,
+                        productTitle,
+                        category,
+                        length,
+                        size,
+                        style,
+                        price,
+                        stock,
+                        type,
+                        bestSales,
+                        sales
+                    };
 
-        // fetch(img_hosting_url, {
-        //     method: "POST",
-        //     body: formData
-        // }).then(res => res.json())
-        //     .then(imgResponse => {
-        //         if (imgResponse.success) {
-        //             const imgURL = imgResponse.data.display_url;
-                    
-        //         }
-        //     })
+                    fetch("http://localhost:5000/add-product", {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(productData)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.insertedId) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Successfully add new product',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            };
+                        })
+
+                }
+            })
     }
 
 
@@ -51,101 +91,142 @@ const AddProduct = () => {
                 </div>
 
                 {/* review form */}
-                <div className='w-full lg:w-2/4 lg:mr-20 px-4'>
-                    <form className='w-full p-7 border-2 rounded-lg border-black' onSubmit={handleSubmit}>
+                <div className='w-full lg:w-3/4 lg:mr-20 px-4'>
+                    <form className='w-full px-7 py-5 border-2 rounded-lg border-black' onSubmit={handleSubmit}>
 
-                        <div className="flex flex-col gap-3 my-2">
+                        <div className='flex flex-col md:flex-row items-center gap-5 md:mb-5'>
+                            <div className="flex flex-col gap-3 w-full">
 
-                            <label htmlFor="username">Product Title</label>
-                            <input
-                                className="w-full rounded-md"
-                                type="text"
-                                name='username'
-                                placeholder='Enter Product Title...'
-                                required
-                            />
+                                <label htmlFor="productTitle" className='lg:text-2xl'>Product Title</label>
+                                <input
+                                    className="w-full rounded-md"
+                                    type="text"
+                                    name='productTitle'
+                                    placeholder='Product Title...'
+                                // required
+                                />
+                            </div>
+
+                            <div className="flex flex-col gap-3 w-full ">
+                                <label htmlFor="category" className='lg:text-2xl'>Category</label>
+
+                                <select className="dropdown rounded-md" name='category'>
+                                    <option disabled selected>Select category</option>
+                                    <option value="Hoodies">Hoodies</option>
+                                    <option value="Sweaters">Sweaters</option>
+                                    <option value="Shirts">Shirts</option>
+                                    <option value="Pants">Pants</option>
+                                    <option value="Sweatpants">Sweatpants</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div className="flex flex-col gap-3  mb-2">
-                            <label htmlFor="email">Category</label>
-                            <input
-                                className="w-full rounded-md"
-                                type="email"
-                                name='email'
-                                placeholder='Enter Category...'
-                                required
-                            />
+                        <div className='flex flex-col md:flex-row items-center gap-5 md:mb-5'>
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="length" className='lg:text-2xl'>Length</label>
+                                <select className="dropdown rounded-md" name='length'>
+                                    <option disabled selected>Select length</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Short">Short</option>
+                                    <option value="Long">Long</option>
+                                    <option value="Tall">Tall</option>
+                                </select>
+
+                            </div>
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="size" className='lg:text-2xl'>Size</label>
+
+                                <select className="dropdown rounded-md" name='size'>
+                                    <option disabled selected>Select size</option>
+                                    <option value="S">Small</option>
+                                    <option value="M">Medium</option>
+                                    <option value="L">Large</option>
+                                    <option value="XL">Extra Large</option>
+                                    <option value="XXL">Double Extra Large</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div className="flex flex-col gap-3  mb-4">
-                            <label htmlFor="password">Length</label>
+                        <div className='flex flex-col md:flex-row items-center gap-5 md:mb-5'>
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="style" className='lg:text-2xl'>Style</label>
 
-                            <input
-                                className="w-full rounded-md "
-                                type="text"
-                                name='password'
-                                placeholder='Enter Length...'
-                                required
-                            />
-                        </div>
-                        <div className="flex flex-col gap-3  mb-4">
-                            <label htmlFor="password">Size</label>
+                                <select className="dropdown rounded-md" name='style'>
+                                    <option disabled selected>Select style</option>
+                                    <option value="Polo">Polo</option>
+                                    <option value="Slim">Slim</option>
+                                    <option value="Loose">Loose</option>
+                                    <option value="Jacket">Jacket</option>
+                                    <option value="Classic">Classic</option>
+                                </select>
+                            </div>
 
-                            <input
-                                className="w-full rounded-md "
-                                type="text"
-                                name='password'
-                                placeholder='Enter size...'
-                                required
-                            />
-                        </div>
-                        <div className="flex flex-col gap-3  mb-4">
-                            <label htmlFor="password">Style</label>
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="gender" className='lg:text-2xl'>Gender</label>
 
-                            <input
-                                className="w-full rounded-md "
-                                type="text"
-                                name='password'
-                                placeholder='Enter Style...'
-                                required
-                            />
-                        </div>
-                        <div className="flex flex-col gap-3  mb-4">
-                            <label htmlFor="password">Price</label>
+                                <select className="dropdown rounded-md" name='gender'>
+                                    <option disabled selected>Select Gender</option>
+                                    <option value="Men">Men</option>
+                                    <option value="Women">Women</option>
+                                    <option value="Kid">Kid</option>
+                                </select>
+                            </div>
 
-                            <input
-                                className="w-full rounded-md "
-                                type="text"
-                                name='password'
-                                placeholder='Enter Price...'
-                                required
-                            />
-                        </div>
-                        <div className="flex flex-col gap-3  mb-4">
-                            <label htmlFor="password">Stock</label>
-
-                            <input
-                                className="w-full rounded-md "
-                                type="text"
-                                name='password'
-                                placeholder='Enter Stock...'
-                                required
-                            />
-                        </div>
-                        <div className="flex flex-col gap-3  mb-4">
-                            <label htmlFor="password">Gender</label>
-
-                            <input
-                                className="w-full rounded-md "
-                                type="text"
-                                name='password'
-                                placeholder='Enter Gender...'
-                                required
-                            />
                         </div>
 
-                        <div className="flex flex-col gap-3 mb-2">
-                            <label className='bg-slate-200 rounded-md  w-full text-center cursor-pointer'>
+
+                        <div className='flex flex-col md:flex-row items-center gap-5 md:mb-5'>
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="stock" className='lg:text-2xl'>Stock</label>
+
+                                <input
+                                    className="w-full rounded-md "
+                                    type="number"
+                                    name='stock'
+                                    placeholder='Stock...'
+                                // required
+                                />
+                            </div>
+
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="price" className='lg:text-2xl'>Price</label>
+
+                                <input
+                                    className="w-full rounded-md "
+                                    type="number"
+                                    name='price'
+                                    placeholder='Price...'
+                                // required
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className='flex flex-col md:flex-row items-center gap-5 md:mb-5'>
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="bestSells" className='lg:text-2xl'>Best Sells</label>
+
+                                <select className="dropdown rounded-md" name='bestSales'>
+                                    <option disabled selected>Best Sells</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div className="flex flex-col gap-3 w-full">
+                                <label htmlFor="Sales" className='lg:text-2xl'>Sales</label>
+
+                                <select className="dropdown rounded-md" name='sales'>
+                                    <option disabled selected>New Sales</option>
+                                    <option value="5">5%</option>
+                                    <option value="10">10%</option>
+                                    <option value="15">15%</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-col gap-3 mt-4 mb-2">
+                            <label className='bg-slate-200 rounded-md lg:text-2xl w-full text-center cursor-pointer'>
                                 <input
                                     onChange={(event) => {
                                         handlePhotoName(event.target.files[0])
@@ -153,7 +234,7 @@ const AddProduct = () => {
                                     type="file"
                                     placeholder="photo"
                                     name='photo'
-                                    className=" hidden"
+                                    className="hidden"
                                 />
                                 <div className="text-lg font-semibold my-2 text-center font-serif">
                                     {photoName}
@@ -162,8 +243,8 @@ const AddProduct = () => {
                             </label>
                         </div>
 
-                        <div className="flex justify-center my-10">
-                            <button type="submit" className="bg-black btn w-3/4 p-1 rounded-md border-2 text-white border-black flex justify-evenly items-center">Submit </button>
+                        <div className="flex justify-center mt-4">
+                            <button type="submit" className="bg-black btn md:w-1/4 p-1 rounded-md text-white hover:text-black">Submit </button>
                         </div>
 
                     </form>
