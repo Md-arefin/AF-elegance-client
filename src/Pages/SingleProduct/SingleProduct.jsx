@@ -9,7 +9,8 @@ const SingleProduct = () => {
 
     const { category, dressTitle, image, length, price, reviews, size, stock, style, type, _id } = product[0];
 
-    // console.log(product[0]);
+    console.log(product[0]);
+
     return (
         <div className='mt-5 mb-10'>
             <div className='flex flex-col md:flex-row items-center justify-center gap-10 mb-10'>
@@ -32,16 +33,15 @@ const SingleProduct = () => {
 
                         <p className='lg:text-xl w-48 grid grid-cols-4'>size:
                             <span className='lg:text-xl w-48 grid grid-cols-4 '>
-                                {size.map((sz, i) => <p className='font-sans' key={i}>
+                                {size?.map((sz, i) => <p className='font-sans' key={i}>
                                     {sz},
                                 </p>)}
                             </span>
                         </p>
 
-                        {/* {size[0]},{size[1]},{size[2]} */}
                         <p className='lg:text-xl'>Reviews:
                             {
-                                reviews.map((review, i) => <div key={i} className='mt-5 px-5 border-2'>
+                                reviews?.map((review, i) => <div key={i} className='mt-5 px-5 border-2'>
                                     <div className='flex items-center'>
 
                                         <div className="avatar p-2">

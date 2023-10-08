@@ -23,14 +23,16 @@ const AddProduct = () => {
         const length = form.length.value;
         const size = form.size.value;
         const style = form.style.value;
-        const price = form.price.value;
-        const stock = form.stock.value;
+        const priceString = form.price.value;
+        const stockSales = form.stock.value;
         const type = form.gender.value;
         const bestSales = form.bestSales.value;
-        const sales = form.sales.value;
+        const salesString = form.sales.value;
         const photo = form.photo.files[0];
-
-        // console.log('photo', photo, 'productTitle', productTitle, category, 'category', length, 'length', size, 'size', style, 'style', price, 'price', stock, 'stock', type, 'type', "BestSales", bestSales, 'sales', sales);
+        const stock = parseFloat(stockSales);
+        const price = parseFloat(priceString);
+        const sales = parseFloat(salesString);
+        console.log(productTitle, 'productTitle');
 
         const formData = new FormData();
         formData.append("image", photo);
@@ -45,10 +47,10 @@ const AddProduct = () => {
                     const productData = {
                         email: user?.email,
                         image: imgURL,
-                        productTitle,
+                        dressTitle: productTitle,
                         category,
                         length,
-                        size,
+                        size: [size],
                         style,
                         price,
                         stock,
@@ -103,7 +105,7 @@ const AddProduct = () => {
                                     type="text"
                                     name='productTitle'
                                     placeholder='Product Title...'
-                                // required
+                                    required
                                 />
                             </div>
 
@@ -184,7 +186,7 @@ const AddProduct = () => {
                                     type="number"
                                     name='stock'
                                     placeholder='Stock...'
-                                // required
+                                    required
                                 />
                             </div>
 
@@ -193,10 +195,10 @@ const AddProduct = () => {
 
                                 <input
                                     className="w-full rounded-md "
-                                    type="number"
+                                    type="text"
                                     name='price'
                                     placeholder='Price...'
-                                // required
+                                    required
                                 />
                             </div>
 
@@ -220,7 +222,7 @@ const AddProduct = () => {
                                     <option value="5">5%</option>
                                     <option value="10">10%</option>
                                     <option value="15">15%</option>
-                                    <option value="No">No</option>
+                                    <option value="0">No</option>
                                 </select>
                             </div>
                         </div>
