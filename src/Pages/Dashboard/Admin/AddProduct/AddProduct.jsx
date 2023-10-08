@@ -27,11 +27,10 @@ const AddProduct = () => {
         const stockSales = form.stock.value;
         const type = form.gender.value;
         const bestSales = form.bestSales.value;
-        const salesString = form.sales.value;
+        const sales = form.sales.value;
         const photo = form.photo.files[0];
         const stock = parseFloat(stockSales);
         const price = parseFloat(priceString);
-        const sales = parseFloat(salesString);
         console.log(productTitle, 'productTitle');
 
         const formData = new FormData();
