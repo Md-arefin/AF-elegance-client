@@ -1,23 +1,17 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const AllProduct = () => {
 
-    const [allProducts, setAllProducts] = useState([]);
+    const { data: allProducts = [], refetch } = useQuery(["allProducts"], async () => {
+        const res = await fetch('http://localhost:5000/all-products')
+        return res.json();
+    })
 
-    useEffect(() => {
-        fetch('http://localhost:5000/all-products')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setAllProducts(data);
-            })
-    }, []);
-
-    const handleDeleteUser = (user) => {
-        fetch(`http://localhost:5000/users/${user._id}`, {
+    const handleDeleteProduct = (id) => {
+        fetch(`http://localhost:5000/delete-products/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -28,7 +22,7 @@ const AllProduct = () => {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: "User delete successful",
+                        title: "Successfully delete ",
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -97,7 +91,7 @@ const AllProduct = () => {
                                         <div className="btn bg-slate-300">Edit <FaEdit /></div>
                                     </td>
                                     <td>
-                                        <div onClick={() => handleDeleteproduct(product)} className='btn bg-red-600 text-white hover:text-black'>
+                                        <div onClick={() => handleDeleteProduct(product._id)} className='btn bg-red-600 text-white hover:text-black'>
                                             <FaTrashAlt />
                                         </div>
                                     </td>

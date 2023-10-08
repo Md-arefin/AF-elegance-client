@@ -11,7 +11,6 @@ const AllUsers = () => {
         return res.json();
     })
 
-    console.log(users);
 
     const handleAdmin = (user) => {
         fetch(`http://localhost:5000/users/admin/${user._id}`, {
