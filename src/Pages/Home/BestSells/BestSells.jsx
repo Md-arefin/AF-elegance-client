@@ -10,7 +10,7 @@ const BestSells = () => {
 
     return (
         <div className='my-20'>
-            <p className='text-center text-2xl lg:text-5xl px-4 my-10'> Festive Dresses for Celebrations</p>
+            <p className='text-center text-2xl lg:text-5xl px-4 my-10'> Stylish Dresses for Every Season</p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 w-full gap-5 items-center px-2'>
                 {
                     allProducts.map((product) =>

@@ -39,48 +39,45 @@ const Mens = () => {
                                         open ? <FaMinus className='h-5 w-3 ' /> : <BiPlus className='h-5 w-5 ' />
                                     }
                                 </Disclosure.Button>
-
+                                {/* Category */}
                                 <Disclosure.Panel className="flex flex-col items-center pt-4 px-4 pb-2 text-sm text-gray-500 pr-36">
 
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 ">
-                                        <label htmlFor="email">S</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-10">
+                                        <label htmlFor="Hoodies">Hoodies</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
 
-                                            {...register("email")} />
+                                            {...register("Hoodies")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pl-1 ">
-                                        <label htmlFor="email">M</label>
+                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pr-7 ">
+                                        <label htmlFor="Sweaters">Sweaters</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
                                             placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Sweaters")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 ">
-                                        <label htmlFor="email">L</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-12">
+                                        <label htmlFor="Shirts">Shirts</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Shirts")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[12px]">
-                                        <label htmlFor="email">XL</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-[52px]">
+                                        <label htmlFor="Pants">Pants</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Pants")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[24px]">
-                                        <label htmlFor="email">XXL</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-2">
+                                        <label htmlFor="SweatPants">SweatPants</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("SweatPants")} />
                                     </div>
                                 </Disclosure.Panel>
                             </>
@@ -96,46 +93,42 @@ const Mens = () => {
                                         open ? <FaMinus className='h-5 w-5 ' /> : <BiPlus className='h-5 w-5 ' />
                                     }
                                 </Disclosure.Button>
+                                {/* Size */}
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 flex flex-col items-center pr-36">
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2  ">
-                                        <label htmlFor="email">S</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2  pr-20">
+                                        <label htmlFor="S">S</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-
-                                            {...register("email")} />
+                                            {...register("S")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pl-1 ">
-                                        <label htmlFor="email">M</label>
+                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pr-[75px]">
+                                        <label htmlFor="M">M</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("M")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 ">
-                                        <label htmlFor="email">L</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-20">
+                                        <label htmlFor="L">L</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("L")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[12px]">
-                                        <label htmlFor="email">XL</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-[68px]">
+                                        <label htmlFor="XL">XL</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("XL")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[24px]">
-                                        <label htmlFor="email">XXL</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-[56px]">
+                                        <label htmlFor="XXL">XXL</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("XXL")} />
                                     </div>
                                 </Disclosure.Panel>
                             </>
@@ -150,46 +143,35 @@ const Mens = () => {
                                         open ? <FaMinus className='h-5 w-5 ' /> : <BiPlus className='h-5 w-5 ' />
                                     }
                                 </Disclosure.Button>
+                                {/* Length */}
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 flex flex-col items-center pr-36">
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2  ">
-                                        <label htmlFor="email">S</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-8">
+                                        <label htmlFor="Regular">Regular</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-
-                                            {...register("email")} />
+                                            {...register("Regular")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pl-1 ">
-                                        <label htmlFor="email">M</label>
+                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pr-12 ">
+                                        <label htmlFor="Short">Short</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Short")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 ">
-                                        <label htmlFor="email">L</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-[50px]">
+                                        <label htmlFor="Long">Long</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Long")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[12px]">
-                                        <label htmlFor="email">XL</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-[58px]">
+                                        <label htmlFor="Tall">Tall</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
-                                    </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[24px]">
-                                        <label htmlFor="email">XXL</label>
-                                        <input
-                                            className="checkbox"
-                                            type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Tall")} />
                                     </div>
                                 </Disclosure.Panel>
                             </>
@@ -204,46 +186,43 @@ const Mens = () => {
                                         open ? <FaMinus className='h-5 w-5 ' /> : <BiPlus className='h-5 w-5 ' />
                                     }
                                 </Disclosure.Button>
+                                {/* Style */}
                                 <Disclosure.Panel className="px-4 pt-4 pb-2 text-sm text-gray-500 flex flex-col items-center pr-36">
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2  ">
-                                        <label htmlFor="email">S</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-12">
+                                        <label htmlFor="Polo">Polo</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
 
-                                            {...register("email")} />
+                                            {...register("Polo")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pl-1 ">
-                                        <label htmlFor="email">M</label>
+                                    <div className="flex flex-row-reverse items-center justify-start gap-3 mb-2 pr-10">
+                                        <label htmlFor="Slim">Slim</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Slim")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 ">
-                                        <label htmlFor="email">L</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-9">
+                                        <label htmlFor="Loose">Loose</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Loose")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[12px]">
-                                        <label htmlFor="email">XL</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-6">
+                                        <label htmlFor="Classic">Classic</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Classic")} />
                                     </div>
-                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pl-[24px]">
-                                        <label htmlFor="email">XXL</label>
+                                    <div className="flex flex-row-reverse items-center gap-3 mb-2 pr-[30px]">
+                                        <label htmlFor="Jacket">Jacket</label>
                                         <input
                                             className="checkbox"
                                             type="checkbox"
-                                            placeholder='sd'
-                                            {...register("email")} />
+                                            {...register("Jacket")} />
                                     </div>
                                 </Disclosure.Panel>
                             </>
