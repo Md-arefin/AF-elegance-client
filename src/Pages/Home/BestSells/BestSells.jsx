@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BestSells = () => {
 
@@ -22,7 +23,9 @@ const BestSells = () => {
                                         <h2 className="card-title">{product.dressTitle}</h2>
                                         <p className='text-2xl font-serif'><span>Price: $</span>{product.price}</p>
                                         <div className="card-actions ml-12">
-                                            <button className="btn btn-primary w-3/4">View details</button>
+                                        <Link to={`/product/${product._id}`} className="w-full">
+                                                <button className="btn btn-primary">View details</button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

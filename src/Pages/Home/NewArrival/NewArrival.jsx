@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import sale from '../../../assets/images/icons/sale.png';
 
 const NewArrival = () => {
@@ -31,7 +32,9 @@ const NewArrival = () => {
                                             </div>
                                         </div>
                                         <div className="card-actions ml-12">
-                                            <button className="btn btn-primary w-3/4">View details</button>
+                                            <Link to={`/product/${product._id}`} className="w-full">
+                                                <button className="btn btn-primary">View details</button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
