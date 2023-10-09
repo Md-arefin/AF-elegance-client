@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AllProduct = () => {
@@ -88,7 +89,9 @@ const AllProduct = () => {
                                         <div className=" text-right font-serif text-xl">${product.price}</div>
                                     </td>
                                     <td>
-                                        <div className="btn bg-slate-300">Edit <FaEdit /></div>
+                                        <Link to={`/dashboard/edit-product/${product._id}`} >
+                                            <div className="btn bg-slate-300">Edit <FaEdit /></div>
+                                        </Link>
                                     </td>
                                     <td>
                                         <div onClick={() => handleDeleteProduct(product._id)} className='btn bg-red-600 text-white hover:text-black'>

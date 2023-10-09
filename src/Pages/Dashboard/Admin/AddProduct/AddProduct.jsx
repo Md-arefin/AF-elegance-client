@@ -85,13 +85,14 @@ const AddProduct = () => {
 
     return (
         <div className='mb-20'>
-            <div className='flex flex-col  items-center justify-center'>
+            <div className='flex flex-col  items-center justify-center lg:pl-20'>
                 <div className='w-full lg:w-2/4 px-5 mb-10'>
                     <img src={img1} className='lg:w-2/3 lg:ml-32' alt="" />
-                    <p className='text-xl text-center'>Elevate Your Lifestyle with Our Curated Collection</p>
+                    <p className='text-2xl lg:text-3xl my-10 text-center'>Elevate Your Lifestyle with Our Curated Collection</p>
                 </div>
 
-                {/* review form */}
+                {/* Product form */}
+
                 <div className='w-full lg:w-3/4 lg:mr-20 px-4'>
                     <form className='w-full px-7 py-5 border-2 rounded-lg border-black' onSubmit={handleSubmit}>
 

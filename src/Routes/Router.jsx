@@ -6,6 +6,7 @@ import Main from '../Layout/Main';
 import AddProduct from '../Pages/Dashboard/Admin/AddProduct/AddProduct';
 import AllProduct from '../Pages/Dashboard/Admin/AllProducts/AllProduct';
 import AllUsers from '../Pages/Dashboard/Admin/AllUsers/AllUers';
+import EditProduct from '../Pages/Dashboard/Admin/EditProduct/EditProduct';
 import Revenue from '../Pages/Dashboard/Admin/Revenue/Revenue';
 import Cart from '../Pages/Dashboard/Cart/Cart';
 import DashboardReview from '../Pages/Dashboard/DashboardReview/DashboardReview';
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: "/mens/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/mens/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "/womens",
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: "/womens/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/mens/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "/kids",
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
       {
         path: "/kids/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/mens/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
     ],
   },
@@ -93,6 +94,11 @@ const router = createBrowserRouter([
       {
         path: "add-product",
         element: <AddProduct />,
+      },
+      {
+        path: "edit-product/:id",
+        element: <EditProduct />,
+        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
       },
       {
         path: "revenue",
