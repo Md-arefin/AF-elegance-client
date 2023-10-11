@@ -5,11 +5,15 @@ import wishList from '../../assets/images/icons/wish-list.png';
 import { Link } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import { AuthContext } from '../../provider/AuthProvider';
+import useCart from '../Hooks/useCart';
 
 const Navbar = () => {
 
     let [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useContext(AuthContext);
+    const [carts] =useCart();
+
+    console.log(carts);
 
     const navItems = <>
         <li>
@@ -29,17 +33,20 @@ const Navbar = () => {
     const handleLogout = () => {
         logout();
     }
-    
+
     const iconItems = <>
-        <div className='flex flex-col lg:flex-row justify-evenly lg:items-center my-5 ml-5'>
+        <div className='flex flex-col lg:flex-row justify-evenly lg:items-center ml-3'>
 
-            <img src={searchImg} className="w-8 cursor-pointer" alt="" />
+            {/* <img src={searchImg} className="w-8 cursor-pointer" alt="" /> */}
 
-            <Link to="/dashboard/MyWhishList">
-            <img src={wishList} className="w-8 cursor-pointer my-5" alt="" />
+            <Link to="/dashboard/MyWhishList" className='mb-2 md:mb-0 ml-1'>
+                <img src={wishList} className="w-8 cursor-pointer my-5" alt="" />
             </Link>
 
-            <Link to="/dashboard/my-cart">
+            <Link to="/dashboard/my-cart" className='relative'>
+                <div className="badge badge-primary badge-md absolute left-3 -top-4">
+                    <p className=''>{carts?.length || 0}</p>
+                </div>
                 <img src={fast} className="w-8 cursor-pointer" alt="" />
             </Link>
         </div>
@@ -52,7 +59,7 @@ const Navbar = () => {
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-100 rounded-box w-52 ">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-30 p-2 shadow bg-base-100 rounded-box w-52 h-72">
                             {navItems}
                             {iconItems}
                         </ul>
