@@ -12,13 +12,12 @@ const Cart = () => {
     const totalPrice = carts.reduce((sum, item) => item.totalAmount + sum, 0)
 
     const handleDeleteItems = (id) => {
-        console.log(id);
+        // console.log(id);
         fetch(`http://localhost:5000/carts/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.deletedCount) {
                     refetch();
                     Swal.fire({
@@ -41,7 +40,7 @@ const Cart = () => {
                 <div className='flex items-center justify-between gap-10'>
                     <p className=' text-3xl my-6 ml-5'>Total Price :$ <span className='font-sans font-semibold'> {totalPrice.toFixed(2)}</span></p>
 
-                    <Link className='btn bg-slate-300 flex justify-between'>
+                    <Link to="/dashboard/payment" className='btn bg-slate-300 flex justify-between'>
                         <p className='text-xl'> Pay</p>
                         <img src={cash} className='w-7' alt="" />
                     </Link>

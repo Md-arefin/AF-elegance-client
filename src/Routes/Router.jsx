@@ -11,6 +11,7 @@ import Revenue from '../Pages/Dashboard/Admin/Revenue/Revenue';
 import Cart from '../Pages/Dashboard/Cart/Cart';
 import DashboardReview from '../Pages/Dashboard/DashboardReview/DashboardReview';
 import MyWhishList from '../Pages/Dashboard/MyWhishList/MyWhishList';
+import Payment from '../Pages/Dashboard/Payment/Payment';
 import Profile from '../Pages/Dashboard/Profile/Profile';
 import Purchase from '../Pages/Dashboard/Purchase/Purchase';
 import Home from '../Pages/Home/Home/Home';
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
         path: "edit-product/:id",
         element: <EditProduct />,
         loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
       {
         path: "revenue",
