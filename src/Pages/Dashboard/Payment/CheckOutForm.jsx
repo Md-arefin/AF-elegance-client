@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../provider/AuthProvider';
 
 
-const CheckOutForm = ({ price }) => {
+const CheckOutForm = ({ price, carts }) => {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('');
@@ -85,7 +85,28 @@ const CheckOutForm = ({ price }) => {
                 title: 'Payment Successful',
                 showConfirmButton: false,
                 timer: 1500
+            });
+
+            const payment = {
+                email: user.email,
+                transactionID: paymentIntent.id,
+                price,
+                carts,
+                date: new Date(),
+                orderStatus: "delivery Pending"
+            }
+
+            fetch("http://localhost:5000/payment", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(payment)
             })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
         }
 
     }
@@ -94,7 +115,7 @@ const CheckOutForm = ({ price }) => {
         <div className='mx-2 lg:ml-[550px]'>
             {
                 cardError && <p className='text-red-600 text-xl my-20'>
-                <span className='text-black'>Error: </span>{cardError}</p>
+                    <span className='text-black'>Error: </span>{cardError}</p>
             }
             {
                 transactionID && <p className='text-green-600  text-xl my-20'><span className='text-black'>Transaction ID: </span>{transactionID}</p>

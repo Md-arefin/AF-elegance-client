@@ -11,8 +11,8 @@ const Cart = () => {
 
     const totalPrice = carts.reduce((sum, item) => item.totalAmount + sum, 0)
 
+    console.log(carts);
     const handleDeleteItems = (id) => {
-        // console.log(id);
         fetch(`http://localhost:5000/carts/${id}`, {
             method: "DELETE"
         })
