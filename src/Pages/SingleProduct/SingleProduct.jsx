@@ -1,27 +1,59 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import useCart from '../../components/Hooks/useCart';
+import { useState } from 'react';
+import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
 const SingleProduct = () => {
 
     const { user } = useContext(AuthContext);
     const product = useLoaderData();
     const [, refetch] = useCart();
+    const [quantity, setQuantity] = useState(1);
+    const [totalAmount, setTotalAmount] = useState(1);
 
     const { category, sales, dressTitle, image, length, price, reviews, size, stock, style, type, _id } = product[0];
 
     console.log(product[0]);
+
+    useEffect(() => {
+        if (sales > 1) {
+            const totalSales = sales / 100;
+            const discountedPrice = parseFloat(price).toFixed(2) * totalSales;
+            const total = price - discountedPrice.toFixed(2);
+            const totalPrice = (total * quantity).toFixed(2);
+            setTotalAmount(parseFloat(totalPrice))
+        } else {
+            const total = parseFloat(price).toFixed(2);
+            const totalPrice = (total * quantity).toFixed(2);
+            setTotalAmount( parseFloat(totalPrice))
+        }
+
+    }, [sales, quantity])
+
+    const handleQuantity = (quantity) => {
+
+        if (quantity > 1) {
+            setQuantity(quantity)
+        }
+        else {
+            setQuantity(1)
+        }
+    }
 
     const handleAddToCart = (id) => {
 
         const cartItem = {
             productId: id,
             UserEmail: user?.email,
-            totalAmount : 100
+            totalAmount,
+            quantity,
+            dressTitle,
+            image,
         }
 
         if (user) {
@@ -32,19 +64,19 @@ const SingleProduct = () => {
                 },
                 body: JSON.stringify(cartItem)
             })
-            .then(res => res.json())
-            .then(data =>{
-                if (data.insertedId) {
-                    refetch();   // update ta cart number
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: `${dressTitle} added to the cart `,
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch();   // update ta cart number
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `${dressTitle} added to the cart `,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
         }
 
     }
@@ -60,14 +92,10 @@ const SingleProduct = () => {
                     <div className="card-body">
                         <h2 className="card-title lg:text-4xl">{dressTitle}</h2>
 
-                        <p className='lg:text-lg'> Category: {category}</p>
+                        <p className='lg:text-xl'> Category: {category}</p>
                         <p className='lg:text-xl'>Length: {length}</p>
-
-
                         <p className='lg:text-xl'>stock: {stock}</p>
-
                         <p className='lg:text-xl'>style: {style}</p>
-
                         <p className='lg:text-xl w-48 grid grid-cols-4'>size:
                             <span className='lg:text-xl w-48 grid grid-cols-4 '>
                                 {size?.map((sz, i) => <p className='font-sans' key={i}>
@@ -76,9 +104,38 @@ const SingleProduct = () => {
                             </span>
                         </p>
 
-                        <p className='lg:text-xl'>Price: ${price}</p>
-                        <p className='lg:text-xl'>Quantity: 0</p>
-                        <p className='lg:text-xl'>Sales: {sales} %</p>
+                        {
+                            sales && <p className='lg:text-xl'>Sales: {sales} %</p> || ""
+                        }
+
+                        <p className='lg:text-xl flex items-center justify-between'>Price:
+                            <div>
+                                $<span className='font-sans font-bold'> {price}</span>
+                            </div>
+                        </p>
+
+                        <div className='lg:text-xl flex items-center justify-between' >
+                            <p className=''>Quantity:</p>
+
+                            <div className='lg:text-xl flex items-center border-2'>
+                                <AiOutlinePlus onClick={() => handleQuantity(quantity + 1)} className="w-10 text-2xl cursor-pointer" />
+
+                                <p className="w-10 border-l-2 border-r-2 text-center">
+                                    {quantity}
+                                </p>
+
+                                <AiOutlineMinus onClick={() => handleQuantity(quantity - 1)} className="w-10 text-2xl cursor-pointer" />
+                            </div>
+                        </div>
+
+                        <p className='lg:text-xl flex items-center justify-between'>Total Amount:
+
+                            <div>
+                                $<span className='font-sans font-bold'> {totalAmount}</span>
+                            </div>
+                        </p>
+
+
                         {/* -- */}
 
                         <div className="card-actions justify-between mt-5">
