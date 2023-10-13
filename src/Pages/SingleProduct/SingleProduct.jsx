@@ -154,7 +154,7 @@ const SingleProduct = () => {
                     reviews ?
                         <p className='lg:text-xl text-center'>
                             {
-                                reviews?.map((review, i) => <div key={i} className='mt-5 px-5  flex items-center justify-evenly rounded-lg border-2'>
+                                reviews?.map((review, i) => <div key={i} className='mt-5 px-5  flex items-center justify-normal rounded-lg border-2 lg:gap-12'>
 
                                     <div className=''>
                                         <div className="avatar p-2">

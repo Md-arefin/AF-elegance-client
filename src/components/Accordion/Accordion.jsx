@@ -2,11 +2,7 @@ import { Disclosure } from '@headlessui/react'
 import { BsChevronUp } from 'react-icons/bs'
 
 
-export default function Accordion() {
-
-    
-
-    
+export default function Accordion() { 
 
   return (
     <div className="w-full px-4 pt-16">
