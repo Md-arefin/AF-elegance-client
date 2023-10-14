@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import { AuthContext } from '../../provider/AuthProvider';
 import useCart from '../Hooks/useCart';
+import useFavourites from '../Hooks/useFavourites';
 
 const Navbar = () => {
 
     let [isOpen, setIsOpen] = useState(false);
     const { user, logout } = useContext(AuthContext);
-    const [carts] =useCart();
-
-    console.log(carts);
+    const [carts] = useCart();
+    const [favourites,] = useFavourites();
 
     const navItems = <>
         <li>
@@ -39,7 +39,10 @@ const Navbar = () => {
 
             {/* <img src={searchImg} className="w-8 cursor-pointer" alt="" /> */}
 
-            <Link to="/dashboard/MyWhishList" className='mb-2 md:mb-0 ml-1'>
+            <Link to="/dashboard/MyWhishList" className='mb-2 md:mb-0 ml-1 relative'>
+                <div className="badge badge-primary badge-md absolute left-3 top-1">
+                    <p className=''>{favourites?.length || 0}</p>
+                </div>
                 <img src={wishList} className="w-8 cursor-pointer my-5" alt="" />
             </Link>
 

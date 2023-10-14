@@ -80,7 +80,7 @@ const MyWhishList = () => {
 
     return (
         <div>
-            <p className='text-center text-5xl'>This is My Whish List: {favourites.length}</p>
+          
             <div className="overflow-x-auto lg:w-3/4 rounded-xl md:mx-auto">
                 <table className="table table-zebra ">
                     {/* head */}

@@ -8,15 +8,17 @@ import useCart from '../../components/Hooks/useCart';
 import { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import useAdmin from '../../components/Hooks/useAdmin';
+import useFavourites from '../../components/Hooks/useFavourites';
 
 const SingleProduct = () => {
 
     const [isAdmin] = useAdmin();
     const { user } = useContext(AuthContext);
     const product = useLoaderData();
-    const [, refetch] = useCart();
+    const [, cartRefetch] = useCart();
     const [quantity, setQuantity] = useState(1);
     const [totalAmount, setTotalAmount] = useState(1);
+    const [, refetch] = useFavourites();
 
     const { category, sales, dressTitle, image, length, price, reviews, size, stock, style, type, _id } = product[0];
 
@@ -47,7 +49,7 @@ const SingleProduct = () => {
         }
     }
 
-    const handleAddTOFavourite = id => {
+    const handleAddToFavourite = id => {
         const favouriteItem = {
             productId: id,
             UserEmail: user?.email,
@@ -104,7 +106,7 @@ const SingleProduct = () => {
                 .then(res => res.json())
                 .then(data => {
                     if (data.insertedId) {
-                        refetch();   // update ta cart number
+                        cartRefetch();   // update ta cart number
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -176,7 +178,7 @@ const SingleProduct = () => {
                         {/* -- */}
 
                         <div className="card-actions justify-between mt-5">
-                            <button onClick={() => handleAddTOFavourite(_id)} className="btn btn-primary" disabled={isAdmin?.admin == true}>Add to favourite</button>
+                            <button onClick={() => handleAddToFavourite(_id)} className="btn btn-primary" disabled={isAdmin?.admin == true}>Add to favourite</button>
 
                             <button onClick={() => handleAddToCart(_id)} className="btn btn-primary w-[184px]" disabled={isAdmin?.admin === true}>Add to cart</button>
                         </div>
