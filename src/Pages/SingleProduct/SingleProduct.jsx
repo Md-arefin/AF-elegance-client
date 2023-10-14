@@ -18,11 +18,12 @@ const SingleProduct = () => {
     const [, cartRefetch] = useCart();
     const [quantity, setQuantity] = useState(1);
     const [totalAmount, setTotalAmount] = useState(1);
+    const [paidData, setPaidData] = useState([]);
+    const [addReview, setAddREview] = useState(false);
     const [, refetch] = useFavourites();
 
     const { category, sales, dressTitle, image, length, price, reviews, size, stock, style, type, _id } = product[0];
-
-    console.log(isAdmin?.admin);
+    console.log(_id);
 
     useEffect(() => {
         if (sales > 1) {
@@ -38,6 +39,21 @@ const SingleProduct = () => {
         }
 
     }, [sales, quantity])
+
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/getPaidData/${user?.email}`)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setPaidData(data)
+    //         })
+
+    //     if (paidData.map(pd => pd.carts.map(item => item.productId !== _id))) {
+    //         setAddREview(false)
+    //     } else {
+    //         setAddREview(true)
+    //     }
+
+    // }, [user])
 
     const handleQuantity = (quantity) => {
 

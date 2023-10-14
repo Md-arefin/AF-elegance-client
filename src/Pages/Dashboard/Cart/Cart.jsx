@@ -35,10 +35,10 @@ const Cart = () => {
     return (
         <div>
             <div className='flex items-center justify-center mx-20 gap-5'>
-                <p className=' text-3xl my-6 ml-5'>Total Product : {carts.length}</p>
+                <p className='text-xl my xl:text-3xl my-6 ml-5'>Total Product : {carts.length}</p>
 
                 <div className='flex items-center justify-between gap-10'>
-                    <p className=' text-3xl my-6 ml-5'>Total Price :$ <span className='font-sans font-semibold'> {totalPrice.toFixed(2)}</span></p>
+                    <p className=' text-xl my xl:text-3xl my-6 ml-5'>Total Price :$ <span className='font-sans font-semibold'> {totalPrice.toFixed(2)}</span></p>
 
                     <Link to="/dashboard/payment" className='btn bg-slate-300 flex justify-between'>
                         <p className='text-xl'> Pay</p>

@@ -12,6 +12,7 @@ import moneyImg from "../assets/images/icons/money.png";
 import cartImg from "../assets/images/icons/fast-delivery.png";
 import wishImg from "../assets/images/icons/wish-list.png";
 import useAdmin from '../components/Hooks/useAdmin';
+import Cart from '../Pages/Dashboard/Cart/Cart';
 
 const Dashboard = () => {
     const { user } = useContext(AuthContext);
@@ -149,6 +150,7 @@ const Dashboard = () => {
             </div>
 
             {/* OUTLET */}
+
             <div className='w-full'>
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -168,7 +170,7 @@ const Dashboard = () => {
                             </div>
                         </li>
                         {
-                            isAdmin?.admin && adminNavItems ||  userNavItems
+                            isAdmin?.admin && adminNavItems || userNavItems
                         }
                     </ul>
                 </div>
