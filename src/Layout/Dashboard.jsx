@@ -68,14 +68,14 @@ const Dashboard = () => {
             </NavLink>
         </li>
 
-        <li>
+        {/* <li>
             <NavLink to="/dashboard/profile" className='lg:text-xl btn flex justify-between items-center my-2'>
                 <p>
                     Profile
                 </p>
                 <img className='w-8' src={profileImg} alt="" />
             </NavLink>
-        </li>
+        </li> */}
 
     </>
 

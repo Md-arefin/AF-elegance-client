@@ -16,8 +16,8 @@ const Details = ({ product }) => {
     }
 
     return (
-        <div key={_id} className="card w-3/3 bg-base-100 shadow-xl">
-            <figure><img src={image} alt={dressTitle} /></figure>
+        <div key={_id} className="card w-3/3 h-[550px] bg-base-100 shadow-xl">
+            <figure><img className='' src={image} alt={dressTitle} /></figure>
             <div className="card-body">
                 <h2 className="card-title">{dressTitle}</h2>
                 <p className='font-serif font-bold text-2xl'>Price: $ {price}</p>

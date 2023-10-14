@@ -7,9 +7,11 @@ import Swal from 'sweetalert2';
 import useCart from '../../components/Hooks/useCart';
 import { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import useAdmin from '../../components/Hooks/useAdmin';
 
 const SingleProduct = () => {
 
+    const [isAdmin] = useAdmin();
     const { user } = useContext(AuthContext);
     const product = useLoaderData();
     const [, refetch] = useCart();
@@ -18,7 +20,7 @@ const SingleProduct = () => {
 
     const { category, sales, dressTitle, image, length, price, reviews, size, stock, style, type, _id } = product[0];
 
-    console.log(product[0]);
+    console.log(isAdmin?.admin);
 
     useEffect(() => {
         if (sales > 1) {
@@ -30,7 +32,7 @@ const SingleProduct = () => {
         } else {
             const total = parseFloat(price).toFixed(2);
             const totalPrice = (total * quantity).toFixed(2);
-            setTotalAmount( parseFloat(totalPrice))
+            setTotalAmount(parseFloat(totalPrice))
         }
 
     }, [sales, quantity])
@@ -43,6 +45,41 @@ const SingleProduct = () => {
         else {
             setQuantity(1)
         }
+    }
+
+    const handleAddTOFavourite = id => {
+        const favouriteItem = {
+            productId: id,
+            UserEmail: user?.email,
+            totalAmount,
+            quantity,
+            dressTitle,
+            image,
+        }
+
+        if (user) {
+            fetch("http://localhost:5000/favourites", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(favouriteItem)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch();   // update ta cart number
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `${dressTitle} added to the cart `,
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                })
+        }
+
     }
 
     const handleAddToCart = (id) => {
@@ -139,9 +176,9 @@ const SingleProduct = () => {
                         {/* -- */}
 
                         <div className="card-actions justify-between mt-5">
-                            <button className="btn btn-primary">Add to favourite</button>
+                            <button onClick={() => handleAddTOFavourite(_id)} className="btn btn-primary" disabled={isAdmin?.admin == true}>Add to favourite</button>
 
-                            <button onClick={() => handleAddToCart(_id)} className="btn btn-primary w-[184px]">Add to cart</button>
+                            <button onClick={() => handleAddToCart(_id)} className="btn btn-primary w-[184px]" disabled={isAdmin?.admin === true}>Add to cart</button>
                         </div>
                     </div>
                 </div>

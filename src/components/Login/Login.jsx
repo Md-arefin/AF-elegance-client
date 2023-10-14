@@ -5,6 +5,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import Modal from '../Modal/Modal';
 
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
     const { signInWithGoogle, signIn } = useContext(AuthContext);
     const { register, handleSubmit, reset } = useForm();
     const [error, setError] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -32,6 +34,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
+                        closeModal()
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -67,6 +70,7 @@ const Login = () => {
                 })
                     .then(res => res.json(saveUser))
                     .then(() => {
+                        setIsOpen(false)
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -75,7 +79,6 @@ const Login = () => {
                             timer: 1500
                         })
                         // navigate(from, { replace: true })
-                        navigate('/')
                     })
             })
             .catch(error => {
@@ -123,6 +126,7 @@ const Login = () => {
                 </div>
 
             </form>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen}/>
         </div>
     );
 };

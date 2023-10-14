@@ -33,7 +33,6 @@ const Purchase = () => {
         setIsOpen(!isOpen)
         setDressTitle(dressTitle)
         setProId(id)
-        console.log(id);
     }
 
     const onSubmit = (data) => {
@@ -53,8 +52,8 @@ const Purchase = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if (data.modifiedCount > 0) {
+                    setIsOpen(false)
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -68,7 +67,7 @@ const Purchase = () => {
     }
 
     return (
-        <div className='relative'>
+        <div className='relative pt-10'>
 
             <div className="overflow-x-auto lg:w-3/4 rounded-xl md:mx-auto">
                 <table className="table table-zebra ">
@@ -78,8 +77,8 @@ const Purchase = () => {
                             <th>
                             </th>
                             <th className='text-center'>Items Name</th>
-                            <th>Total Price</th>
-                            <th>Transaction Id</th>
+                            <th className='text-center'>Total Price</th>
+                            <th className='text-center'>Transaction Id</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,11 +90,11 @@ const Purchase = () => {
                                         {i + 1}
                                     </th>
                                     <td>
-                                        <div className='flex items-center flex-col md:flex-row  gap-4'>
+                                        <div className='flex items-center flex-col md:flex-row gap-4'>
                                             {
                                                 PaidItem.carts.map(items =>
 
-                                                    <div key={items._id} className="card w-44 bg-base-100 shadow-xl">
+                                                    <div key={items._id} className="card w-52 bg-base-100 pt-5 shadow-xl">
                                                         <div className="avatar mx-auto">
                                                             <div className="w-28 rounded-xl">
                                                                 <img src={items.image} />

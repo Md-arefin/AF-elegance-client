@@ -4,6 +4,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
+import Modal from '../Modal/Modal';
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
@@ -12,6 +13,7 @@ const SignUp = () => {
     const { signInWithGoogle, createUser, updateUserProfile } = useContext(AuthContext);
     const [photoName, setPhotoName] = useState("Upload your photo");
     const [error, setError] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
@@ -64,6 +66,7 @@ const SignUp = () => {
                                         .then(res => res.json())
                                         .then(data => {
                                             if (data.insertedId) {
+                                                setIsOpen(false)
                                                 Swal.fire({
                                                     position: 'center',
                                                     icon: 'success',
@@ -74,7 +77,6 @@ const SignUp = () => {
                                             }
                                         })
                                 })
-                            // navigate('/')
                         })
                         .catch(error => {
                             console.log(error.message);
@@ -104,6 +106,7 @@ const SignUp = () => {
                 })
                     .then(res => res.json())
                     .then(() => {
+                        setIsOpen(false)
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -112,7 +115,6 @@ const SignUp = () => {
                             timer: 1500
                         })
                         // navigate(from, { replace: true })
-                        navigate('/')
                     })
             })
             .catch(error => {
@@ -189,11 +191,12 @@ const SignUp = () => {
                 <h5 className='text-center font-semibold text-3xl'>Social Login</h5>
 
                 <div onClick={handleGoogle} className='my-5 cursor-pointer btn  w-full'>
-                    <img  src={googleImg} className='w-7 lg:w-10 ' alt="" />
+                    <img src={googleImg} className='w-7 lg:w-10 ' alt="" />
                     <p className='text-xl'>Google</p>
                 </div>
 
             </form>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeModal={closeModal}/>
         </div>
     );
 };
