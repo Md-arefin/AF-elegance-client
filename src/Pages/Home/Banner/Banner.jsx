@@ -8,7 +8,7 @@ const Banner = () => {
         <div className='lg:mb-20'>
             <Swiper
                 autoplay={{
-                    delay: 3500,
+                    delay: 6500,
                     disableOnInteraction: false,
                 }}
                 modules={[Autoplay]}

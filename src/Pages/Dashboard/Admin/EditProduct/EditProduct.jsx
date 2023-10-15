@@ -39,7 +39,7 @@ const EditProduct = () => {
             bestSales,
         }
 
-        fetch(`http://localhost:5000/edit-product/${_id}`, {
+        fetch(`https://af-elegance-server-md-arefin.vercel.app/edit-product/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json"

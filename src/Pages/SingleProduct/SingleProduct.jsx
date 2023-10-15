@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 import useAdmin from '../../components/Hooks/useAdmin';
 import useFavourites from '../../components/Hooks/useFavourites';
+import Modal from '../../components/Modal/Modal';
 
 const SingleProduct = () => {
 
@@ -18,8 +19,7 @@ const SingleProduct = () => {
     const [, cartRefetch] = useCart();
     const [quantity, setQuantity] = useState(1);
     const [totalAmount, setTotalAmount] = useState(1);
-    const [paidData, setPaidData] = useState([]);
-    const [addReview, setAddREview] = useState(false);
+    let [isOpen, setIsOpen] = useState(false);
     const [, refetch] = useFavourites();
 
     const { category, sales, dressTitle, image, length, price, reviews, size, stock, style, type, _id } = product[0];
@@ -41,7 +41,7 @@ const SingleProduct = () => {
     }, [sales, quantity])
 
     // useEffect(() => {
-    //     fetch(`http://localhost:5000/getPaidData/${user?.email}`)
+    //     fetch(`https://af-elegance-server-md-arefin.vercel.app/getPaidData/${user?.email}`)
     //         .then(res => res.json())
     //         .then(data => {
     //             setPaidData(data)
@@ -75,8 +75,21 @@ const SingleProduct = () => {
             image,
         }
 
+        Swal.fire({
+            title: 'Please Login!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'login!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setIsOpen(true)
+            }
+        })
+
         if (user) {
-            fetch("http://localhost:5000/favourites", {
+            fetch("https://af-elegance-server-md-arefin.vercel.app/favourites", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
@@ -111,8 +124,21 @@ const SingleProduct = () => {
             image,
         }
 
+        Swal.fire({
+            title: 'Please Login!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'login!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setIsOpen(true)
+            }
+        })
+
         if (user) {
-            fetch("http://localhost:5000/carts", {
+            fetch("https://af-elegance-server-md-arefin.vercel.app/carts", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
@@ -138,6 +164,7 @@ const SingleProduct = () => {
 
     return (
         <div className='mt-5 mb-10'>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
             <div className='flex flex-col md:flex-row items-center justify-center gap-10 mb-10'>
                 <div className='lg:w-[25%]'>
                     <figure><img src={image} alt={dressTitle} /></figure>
@@ -194,9 +221,9 @@ const SingleProduct = () => {
                         {/* -- */}
 
                         <div className="card-actions justify-between mt-5">
-                            <button onClick={() => handleAddToFavourite(_id)} className="btn btn-primary" disabled={isAdmin?.admin == true}>Add to favourite</button>
+                            <button onClick={() => handleAddToFavourite(_id)} className="btn bg-[#041C44] hover:bg-[#09A4DB] hover:text-black text-white" disabled={isAdmin?.admin == true}>Add to favourite</button>
 
-                            <button onClick={() => handleAddToCart(_id)} className="btn btn-primary w-[184px]" disabled={isAdmin?.admin === true}>Add to cart</button>
+                            <button onClick={() => handleAddToCart(_id)} className="btn bg-[#09A4DB] hover:bg-[#041C44] hover:text-white w-[184px] text-black" disabled={isAdmin?.admin === true}>Add to cart</button>
                         </div>
                     </div>
                 </div>

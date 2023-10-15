@@ -36,7 +36,7 @@ const Details = ({ product }) => {
                     </div>
                 }
                 <div className="card-actions justify-end">
-                    <Link to={`/${type}/${_id}`} className='btn'>
+                    <Link to={`/${type}/${_id}`} className='btn bg-gradient-to-tr from-[#041C44] to-[#09A4DB] text-white hover:bg-gradient-to-bl'>
                         View details
                     </Link>
                 </div>

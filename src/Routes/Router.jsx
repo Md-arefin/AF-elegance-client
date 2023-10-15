@@ -20,7 +20,9 @@ import Mens from '../Pages/Mens/Mens';
 import SingleProduct from '../Pages/SingleProduct/SingleProduct';
 import Womens from '../Pages/Womens/Womens';
 
+
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <Main />,
@@ -37,12 +39,12 @@ const router = createBrowserRouter([
       {
         path: "/mens/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+        loader: ({ params }) => fetch(`https://af-elegance-server-md-arefin.vercel.app/product/${params.id}`),
       },
       {
         path: "/product/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+        loader: ({ params }) => fetch(`https://af-elegance-server-md-arefin.vercel.app/product/${params.id}`),
       },
       {
         path: "/womens",
@@ -51,7 +53,7 @@ const router = createBrowserRouter([
       {
         path: "/womens/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+        loader: ({ params }) => fetch(`https://af-elegance-server-md-arefin.vercel.app/product/${params.id}`),
       },
       {
         path: "/kids",
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
       {
         path: "/kids/:id",
         element: <SingleProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+        loader: ({ params }) => fetch(`https://af-elegance-server-md-arefin.vercel.app/product/${params.id}`),
       },
     ],
   },
@@ -69,8 +71,8 @@ const router = createBrowserRouter([
     element: <Dashboard />,
     children: [
       {
-        path: "dashboard",
-        element:  <Cart />,
+        path: "/dashboard",
+        element: <Cart />,
       },
       {
         path: "purchase",
@@ -108,7 +110,7 @@ const router = createBrowserRouter([
       {
         path: "edit-product/:id",
         element: <EditProduct />,
-        loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+        loader: ({ params }) => fetch(`https://af-elegance-server-md-arefin.vercel.app/product/${params.id}`),
       },
       {
         path: "payment",

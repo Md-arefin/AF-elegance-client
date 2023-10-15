@@ -56,7 +56,7 @@ const SignUp = () => {
                                         email,
                                         imgURL
                                     }
-                                    fetch('http://localhost:5000/add-users', {
+                                    fetch('https://af-elegance-server-md-arefin.vercel.app/add-users', {
                                         method: "POST",
                                         headers: {
                                             'content-type': "application/json"
@@ -96,7 +96,7 @@ const SignUp = () => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 const saveUser = { username: loggedUser.displayName, email: loggedUser.email, imgURL: loggedUser.photoURL }
-                fetch('http://localhost:5000/add-users', {
+                fetch('https://af-elegance-server-md-arefin.vercel.app/add-users', {
                     method: "POST",
                     headers: {
                         'content-type': "application/json",
@@ -125,7 +125,7 @@ const SignUp = () => {
 
     return (
         <div>
-            <form className='w-full px-2 border-2 rounded-lg border-black' onSubmit={handleSubmit}>
+            <form className='w-full px-2 border-2 rounded-lg border-transparent' onSubmit={handleSubmit}>
 
                 <h5 className='text-center font-semibold text-2xl md:text-3xl my-5'>Please Sign-up</h5>
 
@@ -165,7 +165,7 @@ const SignUp = () => {
                 </div>
 
                 <div className="flex flex-col gap-3 mb-2">
-                    <label className='bg-black text-white rounded-md  w-full text-center cursor-pointer'>
+                    <label className='bg-slate-300 rounded-md  w-full text-center cursor-pointer'>
                         <input
                             onChange={(event) => {
                                 handlePhotoName(event.target.files[0])
@@ -183,7 +183,7 @@ const SignUp = () => {
                 </div>
 
                 <div className="flex justify-center my-10">
-                    <button type="submit" className="bg-black btn w-3/4 p-1 rounded-md border-2 text-white border-black flex justify-evenly items-center">Submit <BiLogIn /></button>
+                    <button type="submit" className="bg-slate-300 btn w-3/4 p-1 rounded-md border-2  border-transparent flex justify-evenly items-center">Submit </button>
                 </div>
 
                 <div className='border-2 w-11/12 mx-auto my-5'></div>
@@ -196,7 +196,7 @@ const SignUp = () => {
                 </div>
 
             </form>
-            <Modal isOpen={isOpen} setIsOpen={setIsOpen} closeModal={closeModal}/>
+            <Modal isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
     );
 };

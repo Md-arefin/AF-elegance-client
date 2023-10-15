@@ -58,7 +58,7 @@ const AddProduct = () => {
                         sales
                     };
 
-                    fetch("http://localhost:5000/add-product", {
+                    fetch("https://af-elegance-server-md-arefin.vercel.app/add-product", {
                         method: "POST",
                         headers: {
                             "content-type": "application/json"

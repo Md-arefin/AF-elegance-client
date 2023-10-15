@@ -13,7 +13,7 @@ const Mens = () => {
 
     // fetch product
     useEffect(() => {
-        fetch('http://localhost:5000/mens')
+        fetch('https://af-elegance-server-md-arefin.vercel.app/mens')
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

@@ -6,7 +6,7 @@ import sale from '../../../assets/images/icons/sale.png';
 const NewArrival = () => {
 
     const { data: sales = [], refetch } = useQuery(["sales"], async () => {
-        const res = await fetch('http://localhost:5000/sales')
+        const res = await fetch('https://af-elegance-server-md-arefin.vercel.app/sales')
         return res.json();
     })
 
@@ -29,9 +29,9 @@ const NewArrival = () => {
                                         <p className='absolute top-2 right-10 text-3xl text-white -rotate-[23deg] font-serif'>{product.sales}%</p>
                                     </div>
                                 </div>
-                                <div className="card-actions ml-12">
+                                <div className="card-actions mx-auto">
                                     <Link to={`/product/${product._id}`} className="w-full">
-                                        <button className="btn btn-primary">View details</button>
+                                        <button className="btn bg-gradient-to-tr from-[#041C44] to-[#09A4DB] text-white hover:bg-gradient-to-bl">View details</button>
                                     </Link>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@ const NewArrival = () => {
                 }
             </div>
         </div>
-    );
+    ); 
 };
 
 export default NewArrival;

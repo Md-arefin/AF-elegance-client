@@ -16,7 +16,7 @@ const CheckOutForm = ({ price, carts }) => {
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://af-elegance-server-md-arefin.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -96,7 +96,7 @@ const CheckOutForm = ({ price, carts }) => {
                 orderStatus: "delivery Pending"
             }
 
-            fetch("http://localhost:5000/payment", {
+            fetch("https://af-elegance-server-md-arefin.vercel.app/payment", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"

@@ -23,7 +23,7 @@ const Purchase = () => {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:5000/get-payment/${user?.email}`)
+        fetch(`https://af-elegance-server-md-arefin.vercel.app/get-payment/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log("[data]", data);
@@ -45,7 +45,7 @@ const Purchase = () => {
             review_msg: data?.message,
         };
         console.log(reviewData);
-        fetch(`http://localhost:5000/add-review-product/${proId}`, {
+        fetch(`https://af-elegance-server-md-arefin.vercel.app/add-review-product/${proId}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

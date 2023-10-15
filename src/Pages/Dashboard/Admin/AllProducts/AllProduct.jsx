@@ -7,12 +7,12 @@ import Swal from 'sweetalert2';
 const AllProduct = () => {
 
     const { data: allProducts = [], refetch } = useQuery(["allProducts"], async () => {
-        const res = await fetch('http://localhost:5000/all-products')
+        const res = await fetch('https://af-elegance-server-md-arefin.vercel.app/all-products')
         return res.json();
     })
 
     const handleDeleteProduct = (id) => {
-        fetch(`http://localhost:5000/delete-products/${id}`, {
+        fetch(`https://af-elegance-server-md-arefin.vercel.app/delete-products/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())

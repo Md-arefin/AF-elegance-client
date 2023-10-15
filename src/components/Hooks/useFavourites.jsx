@@ -8,7 +8,7 @@ const useFavourites = () => {
     const { data: favourites= [], refetch} = useQuery({
         queryKey: ['favourites', user?.email],
         queryFn: async () =>{
-            const res = await fetch(`http://localhost:5000/favourites/${user?.email}`)
+            const res = await fetch(`https://af-elegance-server-md-arefin.vercel.app/favourites/${user?.email}`)
 
             return res.json();
         },

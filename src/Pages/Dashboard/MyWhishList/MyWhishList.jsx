@@ -13,7 +13,7 @@ const MyWhishList = () => {
     const [favourites, refetch] = useFavourites();
 
     const handleDeleteItems = (id) => {
-        fetch(`http://localhost:5000/favourites/${id}`, {
+        fetch(`https://af-elegance-server-md-arefin.vercel.app/favourites/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -46,7 +46,7 @@ const MyWhishList = () => {
         }
 
         if (user) {
-            fetch("http://localhost:5000/carts", {
+            fetch("https://af-elegance-server-md-arefin.vercel.app/carts", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
@@ -63,7 +63,7 @@ const MyWhishList = () => {
                             showConfirmButton: false,
                             timer: 1500
                         })
-                        fetch(`http://localhost:5000/favourites/${id}`, {
+                        fetch(`https://af-elegance-server-md-arefin.vercel.app/favourites/${id}`, {
                             method: "DELETE"
                         })
                             .then(res => res.json())

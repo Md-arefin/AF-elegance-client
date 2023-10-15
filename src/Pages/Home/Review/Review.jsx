@@ -11,7 +11,7 @@ const Review = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/get-review')
+        fetch('https://af-elegance-server-md-arefin.vercel.app/get-review')
             .then(res => res.json())
             .then(data => {
                 setReviews(data);

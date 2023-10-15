@@ -9,7 +9,7 @@ const useCart = () =>{
     const { data: carts= [], refetch: cartRefetch} = useQuery({
         queryKey: ['carts', user?.email],
         queryFn: async () =>{
-            const res = await fetch(`http://localhost:5000/carts/${user?.email}`)
+            const res = await fetch(`https://af-elegance-server-md-arefin.vercel.app/carts/${user?.email}`)
 
             return res.json();
         },

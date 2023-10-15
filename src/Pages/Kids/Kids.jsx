@@ -12,7 +12,7 @@ const Kids = () => {
 
     // fetch product
     useEffect(() => {
-        fetch('http://localhost:5000/kids')
+        fetch('https://af-elegance-server-md-arefin.vercel.app/kids')
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

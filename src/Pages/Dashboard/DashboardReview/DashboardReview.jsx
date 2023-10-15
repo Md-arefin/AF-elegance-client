@@ -26,7 +26,7 @@ const DashboardReview = () => {
             message: data?.message,
         };
         console.log(reviewData);
-        fetch("http://localhost:5000/add-review", {
+        fetch("https://af-elegance-server-md-arefin.vercel.app/add-review", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
