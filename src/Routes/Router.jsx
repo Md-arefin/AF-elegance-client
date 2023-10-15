@@ -12,6 +12,7 @@ import Cart from '../Pages/Dashboard/Cart/Cart';
 import DashboardReview from '../Pages/Dashboard/DashboardReview/DashboardReview';
 import MyWhishList from '../Pages/Dashboard/MyWhishList/MyWhishList';
 import Payment from '../Pages/Dashboard/Payment/Payment';
+import ProductReviews from '../Pages/Dashboard/ProductReviews/ProductReviews';
 import Profile from '../Pages/Dashboard/Profile/Profile';
 import Purchase from '../Pages/Dashboard/Purchase/Purchase';
 import Home from '../Pages/Home/Home/Home';
@@ -81,6 +82,11 @@ const router = createBrowserRouter([
       {
         path: "review",
         element: <DashboardReview />,
+      },
+      {
+        path: "product-review/:id",
+        element: <ProductReviews />,
+        loader: ({ params }) => fetch(`https://af-elegance-server-md-arefin.vercel.app/product/${params.id}`),
       },
       {
         path: "profile",

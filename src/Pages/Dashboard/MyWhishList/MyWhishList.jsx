@@ -80,7 +80,8 @@ const MyWhishList = () => {
 
     return (
         <div>
-          
+            <p className='text-center text-5xl my-10'>Your Dream Collection</p>
+
             <div className="overflow-x-auto lg:w-3/4 rounded-xl md:mx-auto">
                 <table className="table table-zebra ">
                     {/* head */}

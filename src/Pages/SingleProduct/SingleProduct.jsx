@@ -40,21 +40,6 @@ const SingleProduct = () => {
 
     }, [sales, quantity])
 
-    // useEffect(() => {
-    //     fetch(`https://af-elegance-server-md-arefin.vercel.app/getPaidData/${user?.email}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setPaidData(data)
-    //         })
-
-    //     if (paidData.map(pd => pd.carts.map(item => item.productId !== _id))) {
-    //         setAddREview(false)
-    //     } else {
-    //         setAddREview(true)
-    //     }
-
-    // }, [user])
-
     const handleQuantity = (quantity) => {
 
         if (quantity > 1) {
@@ -74,19 +59,6 @@ const SingleProduct = () => {
             dressTitle,
             image,
         }
-
-        Swal.fire({
-            title: 'Please Login!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'login!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                setIsOpen(true)
-            }
-        })
 
         if (user) {
             fetch("https://af-elegance-server-md-arefin.vercel.app/favourites", {
@@ -109,6 +81,19 @@ const SingleProduct = () => {
                         })
                     }
                 })
+        } else {
+            Swal.fire({
+                title: 'Please Login!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setIsOpen(true)
+                }
+            })
         }
 
     }
@@ -123,19 +108,6 @@ const SingleProduct = () => {
             dressTitle,
             image,
         }
-
-        Swal.fire({
-            title: 'Please Login!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'login!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                setIsOpen(true)
-            }
-        })
 
         if (user) {
             fetch("https://af-elegance-server-md-arefin.vercel.app/carts", {
@@ -158,6 +130,19 @@ const SingleProduct = () => {
                         })
                     }
                 })
+        } else {
+            Swal.fire({
+                title: 'Please Login!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'login!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setIsOpen(true)
+                }
+            })
         }
 
     }
