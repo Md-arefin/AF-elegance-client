@@ -95,7 +95,11 @@ const SignUp = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                const saveUser = { username: loggedUser.displayName, email: loggedUser.email, imgURL: loggedUser.photoURL }
+                const saveUser = {
+                    username: loggedUser.displayName,
+                    email: loggedUser.email,
+                    imgURL: loggedUser.photoURL,
+                }
                 fetch('https://af-elegance-server-md-arefin.vercel.app/add-users', {
                     method: "POST",
                     headers: {

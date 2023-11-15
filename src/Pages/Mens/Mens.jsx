@@ -9,7 +9,9 @@ import Details from '../../components/ProductDetails/productDetails';
 const Mens = () => {
 
     const { register } = useForm();
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
     // fetch product
     useEffect(() => {
@@ -18,9 +20,20 @@ const Mens = () => {
             .then(data => {
                 // console.log(data);
                 setProducts(data);
+                setFilteredProducts(data)
             })
     }, [])
 
+    // pagination calculations
+    const productPerPage = 6;
+    const totalPages = Math.ceil(filteredProducts.length / productPerPage);
+    const startIndex = (currentPage - 1) * productPerPage;
+    const endIndex = startIndex + productPerPage;
+    const currentProduct = filteredProducts.slice(startIndex, endIndex);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
     return (
         <div>
             <Marque />
@@ -232,11 +245,21 @@ const Mens = () => {
                 </div>
                 <div className='w-full grid grid-cols-1 lg:grid-cols-3 gap-10 mt-5 lg:mt-20 px-4'>
                     {
-                        products.map(product =>
+                        currentProduct.map(product =>
                             <Details key={product._id} product={product} />
                         )
                     }
                 </div>
+            </div>
+
+            <div className="flex items-center justify-center gap-5 my-16 xl:ml-52">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                    <div
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)} >
+                        <p className={`cursor-pointer border-2 ${currentPage === index + 1 ? `bg-black text-white` : ``} hover:text-white w-10 text-center rounded-lg hover:bg-gray-700`}>{index + 1}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );

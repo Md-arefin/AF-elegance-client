@@ -8,7 +8,9 @@ import Details from '../../components/ProductDetails/productDetails';
 
 const Womens = () => {
     const { register } = useForm();
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
     // fetch product
     useEffect(() => {
@@ -17,8 +19,20 @@ const Womens = () => {
             .then(data => {
                 // console.log(data);
                 setProducts(data);
+                setFilteredProducts(data)
             })
     }, []);
+
+    // pagination calculations
+    const productPerPage = 6;
+    const totalPages = Math.ceil(filteredProducts.length / productPerPage);
+    const startIndex = (currentPage - 1) * productPerPage;
+    const endIndex = startIndex + productPerPage;
+    const currentProduct = filteredProducts.slice(startIndex, endIndex);
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
 
     return (
@@ -29,7 +43,7 @@ const Womens = () => {
             </div>
             <div className='flex flex-col md:flex-row gap-5 justify-center mb-20'>
 
-            <div className=' md:w-[40%] lg:w-[20%] h-[20%] md:sticky top-10 bg-zinc-200 lg:ml-20 mt-5 lg:mt-20 '>
+                <div className=' md:w-[40%] lg:w-[20%] h-[20%] md:sticky top-10 bg-zinc-200 lg:ml-20 mt-5 lg:mt-20 '>
                     <Disclosure>
                         {({ open }) => (
                             <>
@@ -232,10 +246,20 @@ const Womens = () => {
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full mt-5 lg:mt-20'>
                     {
-                        products.map(product =>
+                        currentProduct.map(product =>
                             <Details key={product._id} product={product} />)
                     }
                 </div>
+            </div>
+
+            <div className="flex items-center justify-center gap-5 my-16 xl:ml-52">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                    <div
+                        key={index}
+                        onClick={() => handlePageChange(index + 1)} >
+                        <p className={`cursor-pointer border-2 ${currentPage === index + 1 ? `bg-black text-white` : ``} hover:text-white w-10 text-center rounded-lg hover:bg-gray-700`}>{index + 1}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
