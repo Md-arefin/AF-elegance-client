@@ -257,7 +257,7 @@ const Womens = () => {
                     <div
                         key={index}
                         onClick={() => handlePageChange(index + 1)} >
-                        <p className={`cursor-pointer border-2 border-transparent ${currentPage === index + 1 ? `bg-slate-400 ` : ``} hover:text-white w-10 h-10 flex items-center justify-center text-xl rounded-full hover:bg-gray-700 transition ease-in duration-200`}>{index + 1}</p>
+                        <p className={`cursor-pointer border-2 shadow-lg border-transparent shadow-slate-500 ${currentPage === index + 1 ? `bg-slate-400` : ``} hover:text-white w-10 h-10 flex items-center justify-center text-xl rounded-full hover:bg-gray-700 transition ease-in duration-200`}>{index + 1}</p>
                     </div>
                 ))}
             </div>
