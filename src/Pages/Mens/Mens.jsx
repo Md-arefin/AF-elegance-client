@@ -34,6 +34,8 @@ const Mens = () => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
+
+
     return (
         <div>
             <Marque />
@@ -257,7 +259,7 @@ const Mens = () => {
                     <div
                         key={index}
                         onClick={() => handlePageChange(index + 1)} >
-                        <p className={`cursor-pointer border-2 ${currentPage === index + 1 ? `bg-black text-white` : ``} hover:text-white w-10 text-center rounded-lg hover:bg-gray-700`}>{index + 1}</p>
+                        <p className={`cursor-pointer border-2 shadow-lg ${currentPage === index + 1 ? `bg-slate-400 border-transparent` : ``} hover:text-white w-10 h-10 flex items-center justify-center text-xl rounded-full hover:bg-gray-700 transition ease-in duration-200`}>{index + 1}</p>
                     </div>
                 ))}
             </div>
